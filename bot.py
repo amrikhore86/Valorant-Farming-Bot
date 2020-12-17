@@ -5,39 +5,75 @@ pyautogui.FAILSAFE=False
 
 def bot():
     while True:
+        time.sleep(0.5)
         if pyautogui.locateOnScreen('play.png',confidence=0.8,grayscale=True)!=None:
+            time.sleep(0.5)
             pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen('play.png',confidence=0.8,grayscale=True)))
             print("Open Play Area")
             break
     
     while True:
+        time.sleep
         if pyautogui.locateOnScreen('deathmatch.png',confidence=0.8,grayscale=True)!=None:
+            time.sleep(0.5)
             pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen('deathmatch.png',confidence=0.8,grayscale=True)))
-            print("Switching to Deatchmatch Mode")
+            print("Switching to deathmatch Mode")
             break
     
     while True:        
         if pyautogui.locateOnScreen('start.png',confidence=0.8,grayscale=True)!=None:
+            time.sleep(0.5)
             pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen('start.png',confidence=0.8,grayscale=True)))
             print("Searching for match")
             break
-        
-    time.sleep(5)
-    
+
 def iterate():
     while True:
-        if pyautogui.locateOnScreen('playagain.png',confidence=0.8,grayscale=True)!=None:
-            time.sleep(0.25)
-            pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen('playagain.png',confidence=0.8,grayscale=True)))
+        if pyautogui.locateOnScreen('playagain.png',confidence=0.75,grayscale=True)!=None:
+            time.sleep(0.5)
+            time.sleep(0.5)
+            pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen('playagain.png',confidence=0.75,grayscale=True)))
             print('Playing Again')
             break
+        
+def agent():
+    while True:
+        if pyautogui.locateOnScreen('agent.png',confidence=0.7,grayscale=True)!=None:
+            time.sleep(0.25)
+            pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen("agent.png",confidence=0.75,grayscale=True)))
+            time.sleep(0.2)
+            pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen("agent.png",confidence=0.75,grayscale=True)))
+            if pyautogui.locateOnScreen('agent2.png',confidence=0.7,grayscale=True)!=None:
+                time.sleep(0.25)
+                pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen("agent2.png",confidence=0.75,grayscale=True)))
+                time.sleep(0.2)
+                pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen("agent2.png",confidence=0.75,grayscale=True)))
+                
+            print("Agent Choosed")
+            break
+
+        
+#def buy():
+#    while True:
+#        keyboard.press('b')
+#        if pyautogui.locateOnScreen('buy.png',confidence=0.8,grayscale=True)!=None:
+#            time.sleep(0.25)
+#            time.sleep(0.25)
+#            if pyautogui.click(pyautogui.moveTo(pyautogui.locateOnScreen('agent.png',confidence=0.7,grayscale=True)))
+                
         
 def antiafk():
     print("Now Playing Anti-Afk")
     while True:
-        keyboard.press('Ctrl')
+        pyautogui.keyDown('ctrl')
         time.sleep(1)
-        if pyautogui.locateOnScreen('playagain.png',confidence=0.8,grayscale=True)!=None:
+        pyautogui.keyUp('ctrl')
+        time.sleep(0.5)
+        pyautogui.keyDown("space")
+        time.sleep(0.5)
+        pyautogui.keyUp("space")
+        time.sleep(0.5)
+        if pyautogui.locateOnScreen('playagain.png',confidence=0.7,grayscale=True)!=None:
             break
         
             
@@ -46,13 +82,14 @@ itr=input('Enter the number of iteration. "0" if infinite or else a specific int
 if itr=='0':
     while True:
         bot()
-        antiafk()
-        iterate()
+        #agent()
+        while True:
+            antiafk()
+            iterate()
         
 else:
     for i in range(itr):
         bot()
         antiafk()
         iterate()
-        
-    
+        print("Completed")
